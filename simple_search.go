@@ -10,8 +10,8 @@ func sliceIndex(limit int, predicate func(i int) bool) int {
 	return -1
 }
 
-// SearchString go over a string slice and look for the first occurence of a string (case sensitive). If found returns true
-func SearchString(list []string, needle string) bool {
+// SearchStringInSlice looks for a string inside a slice
+func SearchStringInSlice(list []string, needle string) bool {
 	f := func(i int) bool {
 		return list[i] == needle
 	}

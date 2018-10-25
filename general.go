@@ -8,9 +8,9 @@ func DetectMimeTypeFromContent(content []byte) (contentType string) {
 	return
 }
 
-// StringToPointer returns the address of string.
+// StrToPointer returns the address of string.
 // It is good use when you have  a  literal string thst requiers to be converted to pointer
-func StringToPointer(str string) *string {
+func StrToPointer(str string) *string {
 	return &str
 }
 
