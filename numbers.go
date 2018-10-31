@@ -98,3 +98,33 @@ func In64Split(data, sep string) []int64 {
 
 	return result
 }
+
+// ToFloat32Default convert string to float32 without errors. If error returns, defaultValue is set instead.
+func ToFloat32Default(field string, defaultValue float32) float32 {
+	result, err := strconv.ParseFloat(field, 32)
+	if err != nil {
+		return defaultValue
+	}
+
+	return float32(result)
+}
+
+// ToFloat32 convert string to float32 without errors!
+func ToFloat32(field string) float32 {
+	return ToFloat32Default(field, 0.0)
+}
+
+// ToFloat6Default convert string to float64 without errors. If error returns, default is set instead.
+func ToFloat6Default(field string, defaultValue float64) float64 {
+	result, err := strconv.ParseFloat(field, 64)
+	if err != nil {
+		return defaultValue
+	}
+
+	return result
+}
+
+// ToFloat64 convert string to float64 without errors!
+func ToFloat64(field string) float64 {
+	return ToFloat6Default(field, 0.0)
+}
