@@ -32,3 +32,12 @@ func TestStrToPointer(t *testing.T) {
 		t.Errorf("pStr (%s) is not equal to str (%s)", *pStr, str)
 	}
 }
+
+func TestByteToStr(t *testing.T) {
+	helloBytes := []byte{0x68, 0x65, 0x6c, 0x6c, 0x6f}
+	result := ByteToStr(helloBytes)
+
+	if result != "hello" {
+		t.Error("ByteToStr did not convert to 'hello'")
+	}
+}

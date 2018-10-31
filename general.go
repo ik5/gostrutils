@@ -22,3 +22,8 @@ func PointerToStr(s *string) string {
 
 	return *s
 }
+
+// ByteToStr converts slice of bytes to string
+func ByteToStr(b []byte) string {
+	return string(b)
+}
