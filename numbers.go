@@ -75,8 +75,8 @@ func Int64Join(list []int64, sep string) string {
 	return s
 }
 
-// ToUin64 get a string with seperator and convert it to a slice of uint64
-func ToUin64(data, sep string) []uint64 {
+// Uin64Split get a string with seperator and convert it to a slice of uint64
+func Uin64Split(data, sep string) []uint64 {
 	fields := strings.Split(data, sep)
 	result := make([]uint64, len(fields))
 
@@ -87,8 +87,8 @@ func ToUin64(data, sep string) []uint64 {
 	return result
 }
 
-// ToIn64 get a string with seperator and convert it to a slice of int64
-func ToIn64(data, sep string) []int64 {
+// In64Split get a string with seperator and convert it to a slice of int64
+func In64Split(data, sep string) []int64 {
 	fields := strings.Split(data, sep)
 	result := make([]int64, len(fields))
 
