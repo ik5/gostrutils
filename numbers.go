@@ -23,7 +23,7 @@ func StrToUInt(str string, def uint64) uint64 {
 	return result
 }
 
-// UInt64Join takes a list of uint64 and join them with a seperator
+// UInt64Join takes a list of uint64 and join them with a separator
 // based on https://play.golang.org/p/KpdkVS1B4s
 func UInt64Join(list []uint64, sep string) string {
 	length := len(list)
@@ -49,7 +49,7 @@ func UInt64Join(list []uint64, sep string) string {
 	return s
 }
 
-// Int64Join takes a list of int64 and join them with a seperator
+// Int64Join takes a list of int64 and join them with a separator
 // based on https://play.golang.org/p/KpdkVS1B4s
 func Int64Join(list []int64, sep string) string {
 	length := len(list)
@@ -75,7 +75,7 @@ func Int64Join(list []int64, sep string) string {
 	return s
 }
 
-// Uin64Split get a string with seperator and convert it to a slice of uint64
+// Uin64Split get a string with separator and convert it to a slice of uint64
 func Uin64Split(data, sep string) []uint64 {
 	fields := strings.Split(data, sep)
 	result := make([]uint64, len(fields))
@@ -87,7 +87,7 @@ func Uin64Split(data, sep string) []uint64 {
 	return result
 }
 
-// In64Split get a string with seperator and convert it to a slice of int64
+// In64Split get a string with separator and convert it to a slice of int64
 func In64Split(data, sep string) []int64 {
 	fields := strings.Split(data, sep)
 	result := make([]int64, len(fields))
