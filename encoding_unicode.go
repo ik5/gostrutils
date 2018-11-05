@@ -14,8 +14,7 @@ func EncodeUTF16(s string, addBom bool) []byte {
 	iresult := utf16.Encode(r)
 	var bytes []byte
 	if addBom {
-		bytes = make([]byte, 2)
-		bytes = []byte{254, 255}
+		bytes = append(bytes, 254, 255)
 	}
 	for _, i := range iresult {
 		temp := make([]byte, 2)
