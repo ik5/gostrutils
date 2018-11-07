@@ -37,3 +37,8 @@ func ExampleUTF8ToGsm0338() {
 		panic("Cannot send a message")
 	}
 }
+
+func ExampleGSM0338ToUTF8() {
+	msg := gostrutils.GSM0338ToUTF8("Please email me to user\x00example.com")
+	fmt.Println("Got sms message: ", msg)
+}
