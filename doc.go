@@ -23,5 +23,14 @@ Test coverage
 The aim of the following library is to have close to 100% of unit test coverage,
 and also examples for all existed functions.
 
+GSM 03.38
+
+GSM 03.38 is a text encoding that is used with sending latin based languages with
+SMS.
+
+There are several types of encoding that SMS can support, where one of them is
+GSM 03.38.
+
+
 */
 package gostrutils

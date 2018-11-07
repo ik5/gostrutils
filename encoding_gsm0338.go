@@ -1,11 +1,3 @@
-/*
-
-GSM 03.38 is a text encoding that is used with sending latin based languages with
-SMS.
-
-There are several types of encoding that SMS can support, where one of them is
-GSM 03.38.
-*/
 package gostrutils
 
 import (
