@@ -8,17 +8,25 @@ import (
 	"unicode/utf8"
 )
 
-// EncodeUTF16 get a utf8 string and translate it into a slice of bytes of ucs2
-func EncodeUTF16(s string, addBom bool) []byte {
+// EncodeUTF16 get a utf8 string and translate it into a slice of bytes
+func EncodeUTF16(s string, bigEndian, addBom bool) []byte {
 	r := []rune(s)
 	iresult := utf16.Encode(r)
 	var bytes []byte
 	if addBom {
-		bytes = append(bytes, 254, 255)
+		if bigEndian {
+			bytes = append(bytes, 254, 255)
+		} else {
+			bytes = append(bytes, 255, 254)
+		}
 	}
 	for _, i := range iresult {
 		temp := make([]byte, 2)
-		binary.BigEndian.PutUint16(temp, i)
+		if bigEndian {
+			binary.BigEndian.PutUint16(temp, i)
+		} else {
+			binary.LittleEndian.PutUint16(temp, i)
+		}
 		bytes = append(bytes, temp...)
 	}
 	return bytes
