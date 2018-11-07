@@ -40,7 +40,7 @@ func TestGSM0338ToUTF8Valid2(t *testing.T) {
 	gsm := UTF8ToGsm0338("$")
 	utf8 := GSM0338ToUTF8(gsm)
 	if utf8 != "$" {
-		t.Errorf("Invalid utf8, expected '$', got '%s'", utf8)
+		t.Errorf("Invalid utf8, expected '$', got '%+s', gsm: '%s'", utf8, gsm)
 	}
 }
 
