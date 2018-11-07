@@ -24,7 +24,7 @@ func TestUTF8ToGsm0338Invalid(t *testing.T) {
 	s := "$"
 	gsm := UTF8ToGsm0338(s)
 	if gsm == "$" {
-		t.Errorf("Invalid gsm convertion, expected '\x22', got '%s' ", gsm)
+		t.Errorf("Invalid gsm conversion, expected '\x22', got '%s' ", gsm)
 	}
 }
 
