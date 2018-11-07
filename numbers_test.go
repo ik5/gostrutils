@@ -5,28 +5,28 @@ import (
 	"testing"
 )
 
-func TestStrToIntValid(t *testing.T) {
+func TestStrToInt64Valid(t *testing.T) {
 	result := StrToInt64("-42", 2)
 	if result != -42 {
 		t.Errorf("Invalid result value, expected '-42', got %d", result)
 	}
 }
 
-func TestStrToIntWithDefaultValue(t *testing.T) {
+func TestStrToInt64WithDefaultValue(t *testing.T) {
 	result := StrToInt64("a", -42)
 	if result != -42 {
 		t.Errorf("Invalid result value, expected '-42', got %d", result)
 	}
 }
 
-func TestStrToUIntValid(t *testing.T) {
+func TestStrToUInt64Valid(t *testing.T) {
 	result := StrToUInt64("42", 2)
 	if result != 42 {
 		t.Errorf("Invalid result value, expected '42', got %d", result)
 	}
 }
 
-func TestStrToUIntWithDefaultValue(t *testing.T) {
+func TestStrToUInt64WithDefaultValue(t *testing.T) {
 	result := StrToUInt64("a", 42)
 	if result != 42 {
 		t.Errorf("Invalid result value, expected '42', got %d", result)
