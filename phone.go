@@ -2,8 +2,8 @@ package gostrutils
 
 import "regexp"
 
-// IsIsraeliPhoneNumber check to see if a pettern that looks like israeli phone number
-// is actually an Isreli phone number
+// IsIsraeliPhoneNumber check to see if a pettern that looks like Israeli phone number
+// is actually an Israeli phone number
 func IsIsraeliPhoneNumber(number string) bool {
 	re := regexp.MustCompile("^(0[23489]2|05[69]|0[1-9]{1,6}$|0[1-9]{11,}$|[1-9])")
 	return re.MatchString(number) == false
