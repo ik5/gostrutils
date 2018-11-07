@@ -91,10 +91,6 @@ func UTF8ToGsm0338(text string) string {
 func GSM0338ToUTF8(text string) string {
 	s := ""
 
-	// for k, v := range gsmUtf8Chars {
-	// 	s = strings.Replace(s, k, v, -1)
-	// }
-
 	for _, ch := range text {
 		newCh, found := gsmUtf8Chars[string(ch)]
 		if found {
