@@ -6,28 +6,28 @@ import (
 )
 
 func TestStrToIntValid(t *testing.T) {
-	result := StrToInt("-42", 2)
+	result := StrToInt64("-42", 2)
 	if result != -42 {
 		t.Errorf("Invalid result value, expected '-42', got %d", result)
 	}
 }
 
 func TestStrToIntWithDefaultValue(t *testing.T) {
-	result := StrToInt("a", -42)
+	result := StrToInt64("a", -42)
 	if result != -42 {
 		t.Errorf("Invalid result value, expected '-42', got %d", result)
 	}
 }
 
 func TestStrToUIntValid(t *testing.T) {
-	result := StrToUInt("42", 2)
+	result := StrToUInt64("42", 2)
 	if result != 42 {
 		t.Errorf("Invalid result value, expected '42', got %d", result)
 	}
 }
 
 func TestStrToUIntWithDefaultValue(t *testing.T) {
-	result := StrToUInt("a", 42)
+	result := StrToUInt64("a", 42)
 	if result != 42 {
 		t.Errorf("Invalid result value, expected '42', got %d", result)
 	}
