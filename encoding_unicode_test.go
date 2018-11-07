@@ -1,8 +1,8 @@
 package gostrutils
 
 import (
-	"testing"
 	"reflect"
+	"testing"
 )
 
 func TestEncodeUTF16BigEndian(t *testing.T) {
