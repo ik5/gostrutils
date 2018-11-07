@@ -41,7 +41,7 @@ func DecodeUTF16(b []byte) (string, error) {
 	b8buf := make([]byte, 4)
 	lb := len(b)
 
-	for i := 0; i < lb; i += 2 {
+	for i := 2; i < lb; i += 2 {
 		//assuming bom is big endian if 0 returned
 		if bom == 0 || bom == 1 {
 			u16s[0] = uint16(b[i+1]) + (uint16(b[i]) << 8)
