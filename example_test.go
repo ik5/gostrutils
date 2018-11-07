@@ -25,3 +25,11 @@ func ExamplePointerToStr() {
 	newHello := gostrutils.PointerToStr(pHello)
 	fmt.Printf("empty: %s, pHello: %s\n", empty, newHello)
 }
+
+func ExampleUTF8ToGsm0338() {
+	msg := gostrutils.UTF8ToGsm0338("Please email me to user@example.com")
+	// send the SMS message here
+	if !sendMessage(msg) {
+		panic("Cannot send a message")
+	}
+}
