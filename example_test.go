@@ -47,3 +47,24 @@ func ExampleEncodeUTF16() {
 	str := gostrutils.EncodeUTF16("Windows Unicode String", true, true)
 	fmt.Println(gostrutils.ByteToStr(str))
 }
+
+func ExampleDecodeUTF16() {
+	// Big endian text of TEST
+	text := []byte{
+		0xfe, // BOM
+		0xff, // BOM
+		0x00,
+		'T',
+		0x00,
+		'E',
+		0x00,
+		'S',
+		0x00,
+		'T',
+	}
+	test, err := gostrutils.DecodeUTF16(text)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("we have 'TEST'? ", test)
+}
