@@ -53,6 +53,22 @@ func TestUTF16BomInvalid(t *testing.T) {
 	}
 }
 
+func TestUTF16BomBigEndian(t *testing.T) {
+	b := []byte{0xfe, 0xff}
+	result := UTF16Bom(b)
+	if result != 1 {
+		t.Errorf("Expected '1' got '%d'", result)
+	}
+}
+
+func TestUTF8BomLittleEndian(t *testing.T) {
+	b := []byte{0xff, 0xfe}
+	result := UTF16Bom(b)
+	if result != 2 {
+		t.Errorf("Expected '2' got '%d'", result)
+	}
+}
+
 func utf16ByteSliceLittleEndian() []byte {
 	return []byte{
 		0xff, // BOM
