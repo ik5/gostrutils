@@ -33,15 +33,15 @@ func TestDecodeUTF16(t *testing.T) {
 	}
 }
 
-func TestDecodeUTF16Invalid(t *testing.T) {
-	b := []byte{0xff}
+func TestDecodeUTF16BigEndian(t *testing.T) {
+	b := []byte{0xff, 0xfe, 'A', 0x00}
 	str, err := DecodeUTF16(b)
-	if str != "" {
-		t.Errorf("Invalid string result, expected empty string, got: '%s'", str)
+	if str != "A" {
+		t.Errorf("Invalid string result, expected 'A' string, got: '%s'", str)
 	}
 
-	if err == nil {
-		t.Errorf("Expected error to return, got nil")
+	if err != nil {
+		t.Errorf("Have error: %s", err)
 	}
 }
 
@@ -66,6 +66,14 @@ func TestUTF8BomLittleEndian(t *testing.T) {
 	result := UTF16Bom(b)
 	if result != 2 {
 		t.Errorf("Expected '2' got '%d'", result)
+	}
+}
+
+func TestUTF8BomNoBOM(t *testing.T) {
+	b := []byte{'A', 0x00, 'B', 0x00}
+	result := UTF16Bom(b)
+	if result != 0 {
+		t.Errorf("Expected '0', got '%d'", result)
 	}
 }
 
