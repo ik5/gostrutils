@@ -69,6 +69,19 @@ func TestDecodeUTF16Invalid(t *testing.T) {
 	}
 }
 
+func TestDecodeUTF16Empty(t *testing.T) {
+	b := []byte{}
+	str, err := DecodeUTF16(b)
+	if str != "" {
+		t.Errorf("Invalid string result, expected empty string, got: '%s'", str)
+	}
+
+	if err == nil {
+		t.Errorf("Expected error to return, got nil")
+	}
+
+}
+
 func TestUTF16BomInvalid(t *testing.T) {
 	b := []byte{0xff}
 	result := UTF16Bom(b)
