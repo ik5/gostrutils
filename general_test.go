@@ -33,6 +33,23 @@ func TestStrToPointer(t *testing.T) {
 	}
 }
 
+func TestPointerToStrEmpty(t *testing.T) {
+	var pStr *string
+	str := PointerToStr(pStr)
+	if str != "" {
+		t.Errorf("Expected for empty str, found: '%s'", str)
+	}
+}
+
+func TestPointerToStr(t *testing.T) {
+	origStr := "Hello world"
+	pStr := &origStr
+	str := PointerToStr(pStr)
+	if str != "Hello world" {
+		t.Errorf("Expected for '%s', found: '%s'", origStr, str)
+	}
+}
+
 func TestByteToStr(t *testing.T) {
 	helloBytes := []byte{0x68, 0x65, 0x6c, 0x6c, 0x6f}
 	result := ByteToStr(helloBytes)
