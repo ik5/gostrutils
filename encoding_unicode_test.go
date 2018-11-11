@@ -33,6 +33,26 @@ func TestDecodeUTF16(t *testing.T) {
 	}
 }
 
+func TestDecodeUTF16Invalid(t *testing.T) {
+	b := []byte{0xff}
+	str, err := DecodeUTF16(b)
+	if str != "" {
+		t.Errorf("Invalid string result, expected empty string, got: '%s'", str)
+	}
+
+	if err == nil {
+		t.Errorf("Expected error to return, got nil")
+	}
+}
+
+func TestUTF16BomInvalid(t *testing.T) {
+	b := []byte{0xff}
+	result := UTF16Bom(b)
+	if result >= 0 {
+		t.Errorf("Expected '-1', got '%d'", result)
+	}
+}
+
 func utf16ByteSliceLittleEndian() []byte {
 	return []byte{
 		0xff, // BOM
