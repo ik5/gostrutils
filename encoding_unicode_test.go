@@ -45,6 +45,18 @@ func TestDecodeUTF16BigEndian(t *testing.T) {
 	}
 }
 
+func TestDecodeUTF16NoBOM(t *testing.T) {
+	b := []byte{'A', 0x00}
+	str, err := DecodeUTF16(b)
+	if str != "A" {
+		t.Errorf("Invalid string result, expected 'A' string, got: '%s'", str)
+	}
+
+	if err != nil {
+		t.Errorf("Have error: %s", err)
+	}
+}
+
 func TestDecodeUTF16Invalid(t *testing.T) {
 	b := []byte{0xff}
 	str, err := DecodeUTF16(b)
