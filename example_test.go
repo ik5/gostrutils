@@ -26,6 +26,13 @@ func ExamplePointerToStr() {
 	fmt.Printf("empty: %s, pHello: %s\n", empty, newHello)
 }
 
+func ExampleByteToStr() {
+	b := []byte{'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd'}
+	var s string
+	s = gostrutils.ByteToStr(b)
+	fmt.Println(s)
+}
+
 func sendSmsMessage(msg string) bool {
 	return true
 }
@@ -67,4 +74,26 @@ func ExampleDecodeUTF16() {
 		panic(err)
 	}
 	fmt.Println("we have 'TEST'? ", test)
+}
+
+func ExampleStrToInt64() {
+	meaning := gostrutils.StrToInt64("42", 0)
+	fmt.Println("Meaning of life universe and everything: ", meaning)
+}
+
+func ExampleUInt64Join() {
+	list := []uint64{0, 1, 1, 2, 3, 5, 8, 13, 21, 34}
+	fibonacci := gostrutils.UInt64Join(list, ", ")
+	fmt.Printf("First 10 fibonacci sequence: %s\n", fibonacci)
+}
+
+func ExampleUin64Split() {
+	fibonacci := "0, 1, 1, 2, 3, 5, 8, 13, 21, 34"
+	list := gostrutils.Uin64Split(fibonacci, ", ")
+	fmt.Printf("List: %+v\n", list)
+}
+
+func ExampleToFloat32Default() {
+	pi := gostrutils.ToFloat32Default("3.141592653", 3.14)
+	fmt.Printf("Pi: %f\n", pi)
 }
