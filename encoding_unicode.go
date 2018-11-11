@@ -49,12 +49,16 @@ func DecodeUTF16(b []byte) (string, error) {
 	b8buf := make([]byte, 4)
 	lb := len(b)
 
-	for i := 2; i < lb; i += 2 {
+	// if there is BOM, we start at 2, otherwise at the beginning
+	start := 2
+	if bom == 0 {
+		start = 0
+	}
+	for i := start; i < lb; i += 2 {
 		//assuming bom is big endian if 0 returned
 		if bom == 0 || bom == 1 {
 			u16s[0] = uint16(b[i+1]) + (uint16(b[i]) << 8)
-		}
-		if bom == 2 {
+		} else if bom == 2 {
 			u16s[0] = uint16(b[i]) + (uint16(b[i+1]) << 8)
 		}
 		r := utf16.Decode(u16s)
