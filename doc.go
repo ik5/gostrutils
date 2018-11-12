@@ -31,6 +31,28 @@ SMS.
 There are several types of encoding that SMS can support, where one of them is
 GSM 03.38.
 
+UTF16
+
+UTF16 is 2 byte encoding mechanism. When a character is a single byte, it is
+padded with NULL.
+
+UTF16 contains a representation of characters either as Big or Little endian.
+It means that bytes are either appears as `'A', 0x00"`, or `0x00, 'A'`.
+
+In order to understand what type of encoding is in use, and it's endian, there
+is a BOM -> Byte Order Mark header that provides such information.
+
+Partial content of UTF16 does not a BOM, but a starting of such, should have one.
+It must be the first (two) bytes of the 'string'.
+
+At the past there was a UCS2 encoding that provided the same encoding as UTF16
+Big Endian, and because of that, it was deprecated in favor of of UTF16 Big
+Endian.
+
+The current support for UTF16, provides three functions:
+ 1. Encoding a go string that is UTF8 into UTF16.
+ 2. Decoding a UTF16 to go's string (UTF8).
+ 3. UTF16 BOM detection.
 
 */
 package gostrutils
