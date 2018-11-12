@@ -50,9 +50,9 @@ Big Endian, and because of that, it was deprecated in favor of of UTF16 Big
 Endian.
 
 The current support for UTF16, provides three functions:
- 1. Encoding a go string that is UTF8 into UTF16.
- 2. Decoding a UTF16 to go's string (UTF8).
- 3. UTF16 BOM detection.
+1. Encoding a go string that is UTF8 into UTF16.
+2. Decoding a UTF16 to go's string (UTF8).
+3. UTF16 BOM detection.
 
 */
 package gostrutils
