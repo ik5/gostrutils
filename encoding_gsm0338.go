@@ -74,6 +74,9 @@ var gsmUtf8Chars = map[string]string{
 }
 
 // UTF8ToGsm0338 convert a UTF8 string to a gsm0338 equivalent chars
+//
+// The encoding is driven from "Extended ASCII" charsets, and as such compatible
+// with UTF8, and does not require a slice of bytes
 func UTF8ToGsm0338(text string) string {
 	s := text
 
@@ -88,6 +91,9 @@ func UTF8ToGsm0338(text string) string {
 }
 
 // GSM0338ToUTF8 convert a GSM0338 string to a UTF8 equivalent chars
+//
+// The encoding is driven from "Extended ASCII" charsets, and as such compatible
+// with UTF8, and does not require a slice of bytes
 func GSM0338ToUTF8(text string) string {
 	s := ""
 
