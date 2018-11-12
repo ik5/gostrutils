@@ -2,19 +2,26 @@ package gostrutils
 
 import "net/http"
 
-// DetectMimeTypeFromContent takes a slice of bytes, and try to detect the content type that is in use
+// DetectMimeTypeFromContent takes a slice of bytes, and try to detect the
+// content type that is in use.
 func DetectMimeTypeFromContent(content []byte) (contentType string) {
 	contentType = http.DetectContentType(content)
 	return
 }
 
 // StrToPointer returns the address of string.
-// It is good use when you have a literal string that requires to be converted to pointer
+//
+// The function can help when there is a need to convert literal string yo be
+// have a pointer for that content.
 func StrToPointer(str string) *string {
 	return &str
 }
 
-// PointerToStr converts a nullable string to a normal string
+// PointerToStr converts a pointer string to a normal string
+//
+// If there is a need for a string to be nil, then usually there is a pointer
+// for a string involved. The current function converts nil pointer to empty
+// string, or return the string itself
 func PointerToStr(s *string) string {
 	if s == nil {
 		return ""
