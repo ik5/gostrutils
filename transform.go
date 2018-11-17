@@ -2,8 +2,8 @@ package gostrutils
 
 import "unicode"
 
-// CamelCaseToUnderscode converts CamelCase to camel_case
-func CamelCaseToUnderscode(str string) string {
+// CamelCaseToUnderscore converts CamelCase to camel_case
+func CamelCaseToUnderscore(str string) string {
 	var result string
 	for idx, ch := range str {
 		// first letter will just be lowered

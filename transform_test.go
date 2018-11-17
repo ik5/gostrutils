@@ -4,15 +4,15 @@ import (
 	"testing"
 )
 
-func TestCamelCaseToUnderscodeValid(t *testing.T) {
-	result := CamelCaseToUnderscode("CamelCase")
+func TestCamelCaseToUnderscoreValid(t *testing.T) {
+	result := CamelCaseToUnderscore("CamelCase")
 	if result != "camel_case" {
 		t.Errorf("Expected 'camel_case', got : %s", result)
 	}
 }
 
-func TestCamelCaseToUnderscodeNumeric(t *testing.T) {
-	result := CamelCaseToUnderscode("one_1CamelCase")
+func TestCamelCaseToUnderscoreNumeric(t *testing.T) {
+	result := CamelCaseToUnderscore("one_1CamelCase")
 	if result != "one_1_camel_case" {
 		t.Errorf("Expected 'one_1_camel_case', got: '%s'", result)
 	}
