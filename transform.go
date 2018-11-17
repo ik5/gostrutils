@@ -24,3 +24,17 @@ func CamelCaseToUnderscore(str string) string {
 
 	return result
 }
+
+// CamelCaseToJavascriptCase convert CamelCase to camelCase
+func CamelCaseToJavascriptCase(str string) string {
+	var result string
+	for idx, ch := range str {
+		if idx == 0 {
+			result = string(unicode.ToLower(ch))
+			continue
+		}
+
+		result = result + string(ch)
+	}
+	return result
+}

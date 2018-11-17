@@ -17,3 +17,10 @@ func TestCamelCaseToUnderscoreNumeric(t *testing.T) {
 		t.Errorf("Expected 'one_1_camel_case', got: '%s'", result)
 	}
 }
+
+func TestCamelCaseToJavascriptCase(t *testing.T) {
+	result := CamelCaseToJavascriptCase("CamelCase")
+	if result != "camelCase" {
+		t.Errorf("Expected 'camelCase', got '%s'", result)
+	}
+}
