@@ -5,7 +5,7 @@ years, and slowly moving them to a single package, helping me and others to enjo
 them, and stop inventing the wheel every project.
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/ik5/gostrutils)](https://goreportcard.com/report/github.com/ik5/gostrutils)
-[![GolangCI](https://golangci.com/badges/github.com/ik5/gostrutils.svg)](https://golangci.com)
+[![GolangCI](https://golangci.com/badges/github.com/ik5/gostrutils.svg)](https://golangci.com/r/github.com/ik5/gostrutil)
 [![Build Status](https://travis-ci.org/ik5/gostrutils.svg?branch=master)](https://travis-ci.org/ik5/gostrutils)
 [![Coverage Status](https://coveralls.io/repos/github/ik5/gostrutils/badge.svg?branch=master)](https://coveralls.io/github/ik5/gostrutils?branch=master)
 [![GoDoc](https://godoc.org/github.com/ik5/gostrutils?status.svg)](https://godoc.org/github.com/ik5/gostrutils)
