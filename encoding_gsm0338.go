@@ -84,7 +84,7 @@ func UTF8ToGsm0338(text string) string {
 		s = strings.Replace(s, k, v, -1)
 	}
 
-	re := regexp.MustCompile("[\\x{0080}-\\x{10FFFF}]")
+	re := regexp.MustCompile(`[\x{0080}-\x{10FFFF}]`)
 	s = re.ReplaceAllString(s, "?")
 
 	return s

@@ -28,8 +28,7 @@ func ExamplePointerToStr() {
 
 func ExampleByteToStr() {
 	b := []byte{'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd'}
-	var s string
-	s = gostrutils.ByteToStr(b)
+	s := gostrutils.ByteToStr(b)
 	fmt.Println(s)
 }
 

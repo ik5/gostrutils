@@ -6,12 +6,12 @@ import "regexp"
 // is actually an Israeli phone number
 func IsIsraeliPhoneNumber(number string) bool {
 	re := regexp.MustCompile("^(0[23489]2|05[69]|0[1-9]{1,6}$|0[1-9]{11,}$|[1-9])")
-	return re.MatchString(number) == false
+	return !re.MatchString(number)
 }
 
 // IsE164 validates if a given number is on e164 standard
 func IsE164(number string) bool {
-	re := regexp.MustCompile("^\\+?[1-9]\\d{1,14}$")
+	re := regexp.MustCompile(`\+?[1-9]\d{1,14}$`)
 	return re.MatchString(number)
 }
 
