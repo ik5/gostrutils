@@ -100,9 +100,9 @@ func GSM0338ToUTF8(text string) string {
 	for _, ch := range text {
 		newCh, found := gsmUtf8Chars[string(ch)]
 		if found {
-			s = s + newCh
+			s += newCh
 		} else {
-			s = s + string(ch)
+			s += string(ch)
 		}
 	}
 

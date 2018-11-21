@@ -19,7 +19,7 @@ func CamelCaseToUnderscore(str string) string {
 		}
 
 		// nothing to see here, just accept it
-		result = result + string(ch)
+		result += string(ch)
 	}
 
 	return result
@@ -34,7 +34,7 @@ func CamelCaseToJavascriptCase(str string) string {
 			continue
 		}
 
-		result = result + string(ch)
+		result += string(ch)
 	}
 	return result
 }

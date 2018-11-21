@@ -12,7 +12,7 @@ import (
 func EncodeUTF16(s string, bigEndian, addBom bool) []byte {
 	r := []rune(s)
 	iresult := utf16.Encode(r)
-	var bytes []byte
+	bytes := []byte{}
 	if addBom {
 		if bigEndian {
 			bytes = append(bytes, 254, 255)

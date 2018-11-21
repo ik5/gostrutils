@@ -4,9 +4,11 @@ import (
 	"testing"
 )
 
+const helloWorld = "Hello World"
+const null = "\x00"
+
 func TestUTF8ToGsm0338Valid(t *testing.T) {
-	s := "Hello World"
-	gsm := UTF8ToGsm0338(s)
+	gsm := UTF8ToGsm0338(helloWorld)
 	if gsm != "Hello World" {
 		t.Errorf("Invalid gsm content: '%s', expected 'Hello World'", gsm)
 	}
@@ -15,7 +17,7 @@ func TestUTF8ToGsm0338Valid(t *testing.T) {
 func TestUTF8ToGsm0338Valid2(t *testing.T) {
 	s := "@"
 	gsm := UTF8ToGsm0338(s)
-	if gsm != "\x00" {
+	if gsm != null {
 		t.Errorf("Invalid gsm, expected NULL, got: %s", gsm)
 	}
 }
@@ -29,9 +31,9 @@ func TestUTF8ToGsm0338Invalid(t *testing.T) {
 }
 
 func TestGSM0338ToUTF8Valid(t *testing.T) {
-	gsm := UTF8ToGsm0338("Hello World")
+	gsm := UTF8ToGsm0338(helloWorld)
 	utf8 := GSM0338ToUTF8(gsm)
-	if utf8 != "Hello World" {
+	if utf8 != helloWorld {
 		t.Errorf("Invalid utf8: '%s'", utf8)
 	}
 }
@@ -45,9 +47,9 @@ func TestGSM0338ToUTF8Valid2(t *testing.T) {
 }
 
 func TestGSM0338ToUTF8Invalid(t *testing.T) {
-	gsm := "\x00"
+	gsm := null
 	utf8 := GSM0338ToUTF8(gsm)
-	if utf8 == "\x00" {
+	if utf8 == null {
 		t.Errorf("Invalid utf8, expected '@' got %s", utf8)
 	}
 }

@@ -39,10 +39,10 @@ func UInt64Join(list []uint64, sep string) string {
 	s := ""
 
 	for i, item := range list {
-		s = s + strconv.FormatUint(item, 10)
+		s += strconv.FormatUint(item, 10)
 
 		if i < length-1 {
-			s = s + sep
+			s += sep
 		}
 	}
 
@@ -65,10 +65,10 @@ func Int64Join(list []int64, sep string) string {
 	s := ""
 
 	for i, item := range list {
-		s = s + strconv.FormatInt(item, 10)
+		s += strconv.FormatInt(item, 10)
 
 		if i < length-1 {
-			s = s + sep
+			s += sep
 		}
 	}
 
