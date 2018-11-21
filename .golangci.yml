@@ -1,0 +1,10 @@
+---
+run:
+  concurrency: 4
+  deadkine: 2m
+  tests: true
+
+output:
+  format: colored-line-number
+  print-issued-lines: true
+  print-linter-name: true
