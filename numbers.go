@@ -1,6 +1,7 @@
 package gostrutils
 
 import (
+	"regexp"
 	"strconv"
 	"strings"
 )
@@ -127,4 +128,38 @@ func ToFloat6Default(field string, defaultValue float64) float64 {
 // ToFloat64 convert string to float64 without errors!
 func ToFloat64(field string) float64 {
 	return ToFloat6Default(field, 0.0)
+}
+
+// IsUInteger returns true if a string is unsigned integer
+func IsUInteger(txt string) bool {
+	re := regexp.MustCompile("^[0-9]+$")
+	return re.MatchString(txt)
+}
+
+// IsInteger returns true if a string is an integer
+func IsInteger(txt string) bool {
+	re := regexp.MustCompile("^-?[0-9]+$")
+	return re.MatchString(txt)
+}
+
+// IsUFloat returns true if a string is unsigned floating point
+func IsUFloat(txt string) bool {
+	re := regexp.MustCompile(`^[0-9]+\.[0-9]+$`)
+	return re.MatchString(txt)
+}
+
+// IsFloat returns true if a given text is a floating point
+func IsFloat(txt string) bool {
+	re := regexp.MustCompile(`^-?[0-9]+\.[0-9]+$`)
+	return re.MatchString(txt)
+}
+
+// IsUNumber returns true if a given string is unsigned integer or float
+func IsUNumber(txt string) bool {
+	return IsUInteger(txt) || IsUFloat(txt)
+}
+
+// IsNumber returns true if a given string is integer or float
+func IsNumber(txt string) bool {
+	return IsInteger(txt) || IsFloat(txt)
 }

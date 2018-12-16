@@ -158,3 +158,115 @@ func TestToFloat64Zero(t *testing.T) {
 		t.Errorf("Expected '0.0', got '%f'", num)
 	}
 }
+
+func TestIsUIntegerTrue(t *testing.T) {
+	txt := "42"
+	result := IsUInteger(txt)
+	if !result {
+		t.Errorf("Expected `%s` to be true", txt)
+	}
+}
+
+func TestIsUIntegerFalse(t *testing.T) {
+	txt := "42 Meaning"
+	result := IsUInteger(txt)
+	if result {
+		t.Errorf("Expected `%s` to be false", txt)
+	}
+}
+
+func TestIsIntegerTrue(t *testing.T) {
+	txt := "-42"
+	result := IsInteger(txt)
+	if !result {
+		t.Errorf("Expected `%s` to be true", txt)
+	}
+}
+
+func TestIsIntegerFalse(t *testing.T) {
+	txt := "-42 Meaning"
+	result := IsInteger(txt)
+	if result {
+		t.Errorf("Expected `%s` to be false", txt)
+	}
+}
+
+func TestIsUFloatTrue(t *testing.T) {
+	txt := "3.14"
+	result := IsUFloat(txt)
+	if !result {
+		t.Errorf("Expected `%s` to be true", txt)
+	}
+}
+
+func TestIsUFloatFalse(t *testing.T) {
+	txt := "-3.14"
+	result := IsUFloat(txt)
+	if result {
+		t.Errorf("Exprected `%s` to be false", txt)
+	}
+}
+
+func TestIsFloatTrue(t *testing.T) {
+	txt := "-3.14"
+	result := IsFloat(txt)
+	if !result {
+		t.Errorf("Exprected `%s` to be true", txt)
+	}
+}
+
+func TestIsFloatFalse(t *testing.T) {
+	txt := "42"
+	result := IsFloat(txt)
+	if result {
+		t.Errorf("Expected `%s` to be true", txt)
+	}
+}
+
+func TestIsUNumberIntTrue(t *testing.T) {
+	txt := "42"
+	result := IsUNumber(txt)
+	if !result {
+		t.Errorf("Expected `%s` to be true", txt)
+	}
+}
+
+func TestIsUNumberFloatTrue(t *testing.T) {
+	txt := "3.14"
+	result := IsUNumber(txt)
+	if !result {
+		t.Errorf("Expected `%s` to be true", txt)
+	}
+}
+
+func TestUNumberFalse(t *testing.T) {
+	txt := "42 meaning"
+	result := IsUNumber(txt)
+	if result {
+		t.Errorf("Expected `%s` to be false", txt)
+	}
+}
+
+func TestIsNumberIntTrue(t *testing.T) {
+	txt := "-42"
+	result := IsNumber(txt)
+	if !result {
+		t.Errorf("Expected `%s` to be true", txt)
+	}
+}
+
+func TestIsNumberFloatTrue(t *testing.T) {
+	txt := "-3.14"
+	result := IsNumber(txt)
+	if !result {
+		t.Errorf("Expected `%s` to be true", txt)
+	}
+}
+
+func TestNumberFalse(t *testing.T) {
+	txt := "42 meaning"
+	result := IsNumber(txt)
+	if result {
+		t.Errorf("Expected `%s` to be false", txt)
+	}
+}
