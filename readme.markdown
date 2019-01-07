@@ -10,6 +10,7 @@ them, and stop inventing the wheel every project.
 [![Coverage Status](https://coveralls.io/repos/github/ik5/gostrutils/badge.svg?branch=master)](https://coveralls.io/github/ik5/gostrutils?branch=master)
 [![GoDoc](https://godoc.org/github.com/ik5/gostrutils?status.svg)](https://godoc.org/github.com/ik5/gostrutils)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fik5%2Fgostrutils.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fik5%2Fgostrutils?ref=badge_shield)
 
 
 Package gostrutils contains string utilities that are missing from the main
@@ -46,3 +47,6 @@ contribution to the project must also take that in consideration.
 # License
 
 The Following project released under MIT.
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fik5%2Fgostrutils.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fik5%2Fgostrutils?ref=badge_large)
