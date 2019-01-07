@@ -47,3 +47,6 @@ contribution to the project must also take that in consideration.
 # License
 
 The Following project released under MIT.
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fik5%2Fgostrutils.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fik5%2Fgostrutils?ref=badge_large)
