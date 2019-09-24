@@ -148,3 +148,21 @@ func utf16ByteSliceBigEndian() []byte {
 	}
 
 }
+
+func TestHexToUTF16RunesHelloWorld(t *testing.T) {
+	expected := "Hello World"
+	s := "\x00H\x00e\x00l\x00l\x00o\x00 \x00W\x00o\x00r\x00l\x00d"
+	result := HexToUTF16Runes(s, true)
+	if string(result) != expected {
+		t.Errorf("Expected for %s, got %#U (%s)", expected, result, string(result))
+	}
+}
+
+func TestHexToUTF16RunesHelloWorldHebrew(t *testing.T) {
+	expected := "שלום עולם"
+	s := "\x05\xe9\x05\xdc\x05\xd5\x05\xdd\x00 \x05\xe2\x05\xd5\x05\xdc\x05\xdd"
+	result := HexToUTF16Runes(s, true)
+	if string(result) != expected {
+		t.Errorf("Expected for %s, got %#U (%s)", expected, result, string(result))
+	}
+}

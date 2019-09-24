@@ -101,8 +101,14 @@ func UTF16Bom(b []byte) int8 {
 //
 // Such string looks like:
 //
-//    "\x00H\x00e\x00o\x00 \x00W\x00o\x00r\x00l\x00d"
+//    "\x00H\x00e\x00l\x00l\x00o\x00 \x00W\x00o\x00r\x00l\x00d"
 //    "\x05\xe9\x05\xdc\x05\xd5\x05\xdd\x00 \x05\xe2\x05\xd5\x05\xdc\x05\xdd"
+//
+// Result of the first string is (big endian):
+//   [U+0048 'H' U+0065 'e' U+006C 'l' U+006C 'l' U+006F 'o' U+0020 ' ' U+0057 'W' U+006F 'o' U+0072 'r' U+006C 'l' U+0064 'd'] Hello World
+//
+// Result of the second string is (big endian):
+//   [U+05E9 'ש' U+05DC 'ל' U+05D5 'ו' U+05DD 'ם' U+0020 ' ' U+05E2 'ע' U+05D5 'ו' U+05DC 'ל' U+05DD 'ם'] שלום עולם
 //
 func HexToUTF16Runes(s string, bigEndian bool) []rune {
 	var chars []byte
