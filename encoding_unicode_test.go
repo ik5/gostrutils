@@ -166,3 +166,11 @@ func TestHexToUTF16RunesHelloWorldHebrew(t *testing.T) {
 		t.Errorf("Expected for %s, got %#U (%s)", expected, result, string(result))
 	}
 }
+
+func TestHexToUTF16RunesInvalidString(t *testing.T) {
+	s := "\x05 a"
+	result := HexToUTF16Runes(s, true)
+	if result != nil {
+		t.Errorf("Expected result to be nil: %T", result)
+	}
+}
