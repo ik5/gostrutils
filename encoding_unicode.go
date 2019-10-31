@@ -146,6 +146,9 @@ func HexToUTF16Runes(s string, bigEndian bool) []rune {
 		if position >= length {
 			break
 		}
+		if position+1 > length {
+			break
+		}
 		aByte := []byte{chars[position], chars[position+1]}
 		var aRune uint16
 		if bigEndian {
