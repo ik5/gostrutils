@@ -109,16 +109,10 @@ func UTF16Bom(b []byte) int8 {
 //
 // Result of the second string is (big endian):
 //   [U+05E9 'ש' U+05DC 'ל' U+05D5 'ו' U+05DD 'ם' U+0020 ' ' U+05E2 'ע' U+05D5 'ו' U+05DC 'ל' U+05DD 'ם'] שלום עולם
-//
-// Result for invalid string is nil
 func HexToUTF16Runes(s string, bigEndian bool) []rune {
 	var chars []byte
 	var position int
 	length := len(s)
-
-	if length%2 != 0 {
-		return nil
-	}
 
 	// extract bytes from string
 	for {
@@ -143,10 +137,7 @@ func HexToUTF16Runes(s string, bigEndian bool) []rune {
 
 	// convert bytes two runes
 	for {
-		if position >= length {
-			break
-		}
-		if position+1 > length {
+		if position >= length-1 {
 			break
 		}
 		aByte := []byte{chars[position], chars[position+1]}
