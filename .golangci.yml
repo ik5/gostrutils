@@ -1,7 +1,7 @@
 ---
 run:
   concurrency: 4
-  deadkine: 2m
+  deadline: 2m
   tests: true
 
 output:
