@@ -1,5 +1,9 @@
 package gostrutils
 
+import (
+	"golang.org/x/text/language"
+)
+
 // CountBidiChars counts how many chars belong to a bi-directional language:
 // Arabic (and sub language), Hebrew, Urdu and Yiddish
 func CountBidiChars(s string) int {
@@ -66,4 +70,14 @@ func CountStartBidiLanguage(s string) int {
 	}
 
 	return result + nunLatin
+}
+
+// TagIsBidi return true if a given tag is a bidi language
+func TagIsBidi(tag language.Tag) bool {
+	result := tag == language.Arabic ||
+		tag == language.Persian ||
+		tag == language.Hebrew ||
+		tag == language.Urdu
+
+	return result
 }

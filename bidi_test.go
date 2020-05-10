@@ -1,6 +1,10 @@
 package gostrutils
 
-import "testing"
+import (
+	"testing"
+
+	"golang.org/x/text/language"
+)
 
 func TestCountBidiChars(t *testing.T) {
 	type wordsInput struct {
@@ -99,4 +103,41 @@ func TestCountStartBidiLanguage(t *testing.T) {
 		}
 	}
 
+}
+
+func TestTagIsBidi(t *testing.T) {
+	type tagsToTest struct {
+		input    language.Tag
+		expected bool
+	}
+
+	list := []tagsToTest{
+		{
+			input:    language.Afrikaans,
+			expected: false,
+		},
+		{
+			input:    language.Arabic,
+			expected: true,
+		},
+		{
+			input:    language.Persian,
+			expected: true,
+		},
+		{
+			input:    language.Hebrew,
+			expected: true,
+		},
+		{
+			input:    language.Urdu,
+			expected: true,
+		},
+	}
+
+	for idx, tag := range list {
+		result := TagIsBidi(tag.input)
+		if result != tag.expected {
+			t.Errorf("Test %d. Tag: %+v, got %t", idx, tag, result)
+		}
+	}
 }
