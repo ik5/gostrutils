@@ -13,7 +13,7 @@ func IsEmptyChars(s string, chars []rune) bool {
 
 	result := strings.TrimFunc(s, func(ch rune) bool {
 		_, found := toMapSet[ch]
-		return !found
+		return found
 	})
 
 	return result == ""
