@@ -36,16 +36,17 @@ func TestIsEmptyFuncs(t *testing.T) {
 				expected: false,
 			},
 			{
-				desc:  "input of '-aaaaa' chars: '-a', expected: true",
-				input: "------------a",
-				chars: "-a",
+				desc:     "input of '-aaaaa' chars: '-a', expected: true",
+				input:    "------------a",
+				chars:    "-a",
+				expected: true,
 			},
 		}
 
 		for idx, test := range input {
 			result := IsEmptyChars(test.input, []rune(test.chars))
 			if result != test.expected {
-				t.Errorf("Tested #%d %+v got %t", idx, test, result)
+				t.Errorf("Tested #%d %+v got %t\n", idx, test, result)
 			}
 		}
 	})
