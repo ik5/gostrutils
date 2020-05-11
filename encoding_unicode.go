@@ -121,8 +121,14 @@ func HexToUTF16Runes(s string, bigEndian bool) []rune {
 		}
 		if s[position] == '\\' {
 			position++
-			chars = append(chars, s[position+1], s[position+2])
-			position += 2
+			if position == length {
+				// Just save the slash and nothing more is needed
+				chars = append(chars, s[position-1])
+				break
+			}
+			// save the content of the slash
+			chars = append(chars, s[position-1], s[position])
+			position++
 			continue
 		}
 

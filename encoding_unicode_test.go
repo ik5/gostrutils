@@ -181,3 +181,24 @@ func TestHexToUTF16RunesHelloWorldHebrew(t *testing.T) {
 		t.Errorf("Expected for %s, got %#U (%s)", expected, result, string(result))
 	}
 }
+
+func TestHexToUTF16RunesWithBackslash(t *testing.T) {
+	s := "Backslash\\"
+	expected := []rune("B\x00a\x00c\x00k\x00s\x00l\x00a\x00s\x00h\x00\\")
+	result := HexToUTF16Runes(s, false)
+	if !reflect.DeepEqual(result, expected) {
+		t.Errorf("Expected %+v at the end, got: %+v",
+			expected, result,
+		)
+	}
+}
+
+func TestHexToUTF16RunesWithBackslashTab(t *testing.T) {
+	s := "Backslash\\t"
+	result := HexToUTF16Runes(s, false)
+	if result[len(result)-1] != 't' {
+		t.Errorf("Expected ''t at the end, got: %s | %x",
+			string(result[len(result)-1]), result[len(result)-1])
+
+	}
+}
