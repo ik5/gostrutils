@@ -50,3 +50,19 @@ func TestAbbreviateOffestHigherThenFour(t *testing.T) {
 		t.Errorf("Expected '1…6', got '%s'", str)
 	}
 }
+
+func TestAbbreviateMaxLength(t *testing.T) {
+	str := Abbreviate("1234567890", 1, 0, "")
+	if str != "" {
+		t.Errorf("Expected empty string, got '%s'", str)
+	}
+}
+
+func TestAbbreviateStartLength(t *testing.T) {
+	str := Abbreviate("1234567890", 12, 5, DefaultEllipse)
+	expected := "1…0"
+
+	if str != expected {
+		t.Errorf("Expected '%s' got '%s'", expected, str)
+	}
+}
