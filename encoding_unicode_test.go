@@ -151,11 +151,26 @@ func utf16ByteSliceBigEndian() []byte {
 
 func TestHexToUTF16RunesHelloWorld(t *testing.T) {
 	expected := "Hello World"
-	s := "\x00H\x00e\x00l\x00l\x00o\x00 \x00W\x00o\x00r\x00l\x00d"
-	result := HexToUTF16Runes(s, true)
-	if string(result) != expected {
-		t.Errorf("Expected for %s, got %#U (%s)", expected, result, string(result))
+	result := t.Run("Big-Endian", func(t *testing.T) {
+		s := "\x00H\x00e\x00l\x00l\x00o\x00 \x00W\x00o\x00r\x00l\x00d"
+		result := HexToUTF16Runes(s, true)
+		if string(result) != expected {
+			t.Errorf("Expected for %s, got %#U (%s)", expected, result, string(result))
+		}
+	})
+
+	if !result {
+		t.Error("Error using run")
 	}
+
+	result = t.Run("Little-Endian", func(t *testing.T) {
+		s := "H\x00e\x00l\x00l\x00o\x00 \x00W\x00o\x00r\x00l\x00d\x00"
+		result := HexToUTF16Runes(s, false)
+		if string(result) != expected {
+			t.Errorf("Expected for %s, got %#U (%s)", expected, result, string(result))
+		}
+
+	})
 }
 
 func TestHexToUTF16RunesHelloWorldHebrew(t *testing.T) {
