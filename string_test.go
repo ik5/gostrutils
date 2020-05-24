@@ -92,3 +92,54 @@ func TestIsEmptyFuncs(t *testing.T) {
 		t.Errorf("Invalid IsEmptyChars test")
 	}
 }
+
+func TestTruncate(t *testing.T) {
+	type toCheck struct {
+		input    string
+		length   int
+		expected string
+	}
+
+	tests := []toCheck{
+		{
+			input:    "",
+			length:   0,
+			expected: "",
+		},
+		{
+			input:    "Hello World",
+			length:   100,
+			expected: "Hello World",
+		},
+		{
+			input:    "simple English",
+			length:   4,
+			expected: "simp",
+		},
+		{
+			input:    "עברית קשה שפה",
+			length:   5,
+			expected: "עברית",
+		},
+		{
+			input:    "מעורב mixed",
+			length:   6,
+			expected: "מעורב ",
+		},
+		{
+			input:    "mixed מעורב",
+			length:   5,
+			expected: "mixed",
+		},
+	}
+
+	for idx, test := range tests {
+		result := Truncate(test.input, test.length)
+
+		if test.expected != result {
+			t.Errorf("test %d '%s' (%d): expected '%s'[%d], got :'%s' %x",
+				idx, test.input, len(test.input),
+				test.expected, test.length, result, result)
+		}
+	}
+}
