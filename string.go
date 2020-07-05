@@ -1,6 +1,7 @@
 package gostrutils
 
 import (
+	"errors"
 	"strings"
 	"unicode/utf8"
 )
@@ -52,4 +53,34 @@ func Truncate(s string, length int) string {
 	}
 
 	return string(result)
+}
+
+// CopyRange returns a copy of a string based on start and end of a rune
+// for multi-byte chars instead of byte based chars (ASCII).
+// 'to' is the amount of chars interested plus one.
+// for example, for a string 'foo' extracting 'oo' by from: 1 and to 3.
+func CopyRange(src string, from, to int) (string, error) {
+	if src == "" {
+		return src, nil
+	}
+	tmp := []rune(src)
+
+	runeLength := len(tmp)
+	if to <= 0 {
+		to = runeLength
+	}
+
+	if from >= runeLength {
+		return "", errors.New("from is larger then length")
+	}
+
+	if to > runeLength+1 {
+		return "", errors.New("to is bigger then length")
+	}
+
+	if (from + to) > runeLength+2 {
+		return "", errors.New("from + to is out of range")
+	}
+
+	return string(tmp[from:to]), nil
 }

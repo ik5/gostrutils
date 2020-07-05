@@ -143,3 +143,96 @@ func TestTruncate(t *testing.T) {
 		}
 	}
 }
+
+func TestCopyRange(t *testing.T) {
+	type toCheck struct {
+		input     string
+		from      int
+		to        int
+		expected  string
+		haveError bool
+		error     string
+	}
+	tests := []toCheck{
+		{
+			input:     "foo",
+			from:      3,
+			to:        1,
+			haveError: true,
+			error:     "from is larger then length",
+		},
+		{
+			input:     "foo",
+			from:      0,
+			to:        5,
+			haveError: true,
+			error:     "to is bigger then length",
+		},
+		{
+			input:     "foo",
+			from:      2,
+			to:        4,
+			haveError: true,
+			error:     "from + to is out of range",
+		},
+		{
+			input:    "foo",
+			from:     1,
+			to:       3,
+			expected: "oo",
+		},
+		{
+			input:    "עברית",
+			from:     0,
+			to:       3,
+			expected: "עבר",
+		},
+		{
+			input:    "עברית",
+			from:     1,
+			to:       4,
+			expected: "ברי",
+		},
+		{
+			// start with 1
+			input:    "1עברית",
+			from:     1,
+			to:       6,
+			expected: "עברית",
+		},
+		{
+			// end with 1
+			input:    "עברית1",
+			from:     0,
+			to:       5,
+			expected: "עברית",
+		},
+		{
+			input:    "‏1עברית",
+			from:     2,
+			to:       0,
+			expected: "עברית",
+		},
+	}
+
+	for idx, test := range tests {
+		result, err := CopyRange(test.input, test.from, test.to)
+		if err != nil {
+			if !test.haveError {
+				t.Errorf("Unexpected err: %s", err)
+				continue
+			}
+			if err.Error() != test.error {
+				t.Errorf("Expected error %d: '%s', got '%s'", idx, test.error, err)
+			}
+			continue
+		}
+
+		if test.expected != result {
+			t.Errorf("test %d '%s' (%d): expected '%s'[%d:%d], got :'%s' %x",
+				idx, test.input, len(test.input),
+				test.expected, test.from, test.to, result, result)
+		}
+	}
+
+}
