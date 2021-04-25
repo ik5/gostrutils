@@ -163,3 +163,22 @@ func IsUNumber(txt string) bool {
 func IsNumber(txt string) bool {
 	return IsInteger(txt) || IsFloat(txt)
 }
+
+// IsInRange takes an integer range and look at the string that contains only
+// numbers tom make sure it is inside the range
+func IsInRange(min, max int64, src string) bool {
+	if min > max { // no error so nothing to look for
+		return false
+	}
+
+	if src == "" {
+		return false
+	}
+
+	dest, err := strconv.ParseInt(src, 10, 64)
+	if err != nil {
+		return false
+	}
+
+	return dest >= min && dest <= max
+}
