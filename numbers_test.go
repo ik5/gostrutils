@@ -270,3 +270,104 @@ func TestNumberFalse(t *testing.T) {
 		t.Errorf("Expected `%s` to be false", txt)
 	}
 }
+
+func TestIsInRange(t *testing.T) {
+	type rang struct {
+		min      int64
+		max      int64
+		src      string
+		expected bool
+	}
+
+	var toCheckFalse = []rang{
+		rang{
+			min:      10,
+			max:      1,
+			expected: false,
+		},
+
+		rang{
+			min:      0,
+			max:      1,
+			src:      "",
+			expected: false,
+		},
+
+		rang{
+			min:      0,
+			max:      1,
+			src:      "a",
+			expected: false,
+		},
+
+		rang{
+			min:      5,
+			max:      10,
+			src:      "1",
+			expected: false,
+		},
+
+		rang{
+			min:      0,
+			max:      10,
+			src:      "100",
+			expected: false,
+		},
+
+		rang{
+			min:      0,
+			max:      15,
+			src:      "020",
+			expected: false,
+		},
+
+		rang{
+			min:      0,
+			max:      16,
+			src:      "0x0f",
+			expected: false,
+		},
+	}
+
+	var toCheckTrue = []rang{
+		rang{
+			min:      0,
+			max:      1,
+			src:      "0",
+			expected: true,
+		},
+		rang{
+			min:      0,
+			max:      5,
+			src:      "5",
+			expected: true,
+		},
+		rang{
+			min:      0,
+			max:      10,
+			src:      "8",
+			expected: true,
+		},
+	}
+
+	t.Run("to_check_false", func(t2 *testing.T) {
+		for _, item := range toCheckFalse {
+			result := IsInRange(item.min, item.max, item.src)
+
+			if result != item.expected {
+				t2.Errorf("%#v | Expected %t got %t", item, item.expected, result)
+			}
+		}
+	})
+
+	t.Run("to_check_true", func(t2 *testing.T) {
+		for _, item := range toCheckTrue {
+			result := IsInRange(item.min, item.max, item.src)
+
+			if result != item.expected {
+				t2.Errorf("%#v | Expected %t got %t", item, item.expected, result)
+			}
+
+		}
+	})
+}
