@@ -73,6 +73,10 @@ var gsmUtf8Chars = map[string]string{
 	"\x7F": "\xC3\xA0",
 }
 
+var (
+	utf8Regex = regexp.MustCompile(`[\x{0080}-\x{10FFFF}]`)
+)
+
 // UTF8ToGsm0338 convert a UTF8 string to a gsm0338 equivalent chars
 //
 // The encoding is driven from "Extended ASCII" charsets, and as such compatible
@@ -84,8 +88,7 @@ func UTF8ToGsm0338(text string) string {
 		s = strings.Replace(s, k, v, -1)
 	}
 
-	re := regexp.MustCompile(`[\x{0080}-\x{10FFFF}]`)
-	s = re.ReplaceAllString(s, "?")
+	s = utf8Regex.ReplaceAllString(s, "?")
 
 	return s
 }

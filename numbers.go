@@ -6,6 +6,13 @@ import (
 	"strings"
 )
 
+var (
+	intRegex         = regexp.MustCompile("^[0-9]+$")
+	signedIntRegex   = regexp.MustCompile("^-?[0-9]+$")
+	floatRegex       = regexp.MustCompile(`^[0-9]+\.[0-9]+$`)
+	signedFloatRegex = regexp.MustCompile(`^-?[0-9]+\.[0-9]+$`)
+)
+
 // StrToInt64 convert a string to int64
 func StrToInt64(str string, def int64) int64 {
 	result, err := strconv.ParseInt(str, 10, 64)
@@ -132,26 +139,22 @@ func ToFloat64(field string) float64 {
 
 // IsUInteger returns true if a string is unsigned integer
 func IsUInteger(txt string) bool {
-	re := regexp.MustCompile("^[0-9]+$")
-	return re.MatchString(txt)
+	return intRegex.MatchString(txt)
 }
 
 // IsInteger returns true if a string is an integer
 func IsInteger(txt string) bool {
-	re := regexp.MustCompile("^-?[0-9]+$")
-	return re.MatchString(txt)
+	return signedIntRegex.MatchString(txt)
 }
 
 // IsUFloat returns true if a string is unsigned floating point
 func IsUFloat(txt string) bool {
-	re := regexp.MustCompile(`^[0-9]+\.[0-9]+$`)
-	return re.MatchString(txt)
+	return floatRegex.MatchString(txt)
 }
 
 // IsFloat returns true if a given text is a floating point
 func IsFloat(txt string) bool {
-	re := regexp.MustCompile(`^-?[0-9]+\.[0-9]+$`)
-	return re.MatchString(txt)
+	return signedFloatRegex.MatchString(txt)
 }
 
 // IsUNumber returns true if a given string is unsigned integer or float
