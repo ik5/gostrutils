@@ -280,48 +280,48 @@ func TestIsInRange(t *testing.T) {
 	}
 
 	var toCheckFalse = []rang{
-		rang{
+		{
 			min:      10,
 			max:      1,
 			expected: false,
 		},
 
-		rang{
+		{
 			min:      0,
 			max:      1,
 			src:      "",
 			expected: false,
 		},
 
-		rang{
+		{
 			min:      0,
 			max:      1,
 			src:      "a",
 			expected: false,
 		},
 
-		rang{
+		{
 			min:      5,
 			max:      10,
 			src:      "1",
 			expected: false,
 		},
 
-		rang{
+		{
 			min:      0,
 			max:      10,
 			src:      "100",
 			expected: false,
 		},
 
-		rang{
+		{
 			min:      0,
 			max:      15,
 			src:      "020",
 			expected: false,
 		},
 
-		rang{
+		{
 			min:      0,
 			max:      16,
 			src:      "0x0f",
@@ -330,19 +330,19 @@ func TestIsInRange(t *testing.T) {
 	}
 
 	var toCheckTrue = []rang{
-		rang{
+		{
 			min:      0,
 			max:      1,
 			src:      "0",
 			expected: true,
 		},
-		rang{
+		{
 			min:      0,
 			max:      5,
 			src:      "5",
 			expected: true,
 		},
-		rang{
+		{
 			min:      0,
 			max:      10,
 			src:      "8",
