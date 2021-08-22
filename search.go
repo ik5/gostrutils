@@ -11,13 +11,16 @@ func GetStringIndexInSlice(list []string, needle string) int {
 	return SliceIndex(len(list), f)
 }
 
-// GetBytesIndexInSlice returns the index of the slice if byte was found or -1 if not
-func GetBytesIndexInSlice(list []string, needle string) int {
+// GetBytesRuneIndexInSlice returns the index of the slice if rune was found or -1
+// if not.
+// Important, the index returned is of the rune, not of the byte!
+func GetBytesRuneIndexInSlice(list []byte, needle rune) int {
+	r := bytes.Runes(list)
 	f := func(i int) bool {
-		return list[i] == needle
+		return r[i] == needle
 	}
 
-	return SliceIndex(len(list), f)
+	return SliceIndex(len(r), f)
 }
 
 // IsStringInSlice looks for a string inside a slice and return true if it exists
@@ -36,5 +39,5 @@ func IsRuneInByteSlice(list []byte, needle rune) bool {
 		return r[i] == needle
 	}
 
-	return SliceIndex(len(list), f) > -1
+	return SliceIndex(len(r), f) > -1
 }
