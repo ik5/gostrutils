@@ -1,6 +1,9 @@
 package gostrutils
 
-import "testing"
+import (
+	"bytes"
+	"testing"
+)
 
 func TestIsEmptyFuncs(t *testing.T) {
 	type toCheck struct {
@@ -235,4 +238,63 @@ func TestCopyRange(t *testing.T) {
 		}
 	}
 
+}
+
+func TestKeepByteChars(t *testing.T) {
+	type bytesToTest struct {
+		buf      []byte
+		toKeep   []byte
+		expected []byte
+	}
+
+	validInputs := []bytesToTest{
+		{
+			buf:      []byte("42\n"),
+			toKeep:   []byte("1234567890"),
+			expected: []byte("42"),
+		},
+		{
+			buf:      []byte("שלום עולם | Hello World"),
+			toKeep:   []byte("אבגדהוזחטיךכלםמןנסעףפץצקרשת"),
+			expected: []byte("שלוםעולם"),
+		},
+	}
+
+	invalidInputs := []bytesToTest{
+		{
+			buf:      []byte("42\n"),
+			toKeep:   []byte("\r\n"),
+			expected: []byte("42"),
+		},
+		{
+			buf:      []byte("שלום עולם | Hello World"),
+			toKeep:   []byte("אבגדהוזחטיךכלםמןנסעףפץצקרשת"),
+			expected: []byte("שלום עולם"),
+		},
+	}
+
+	t.Run("valid inputs", func(t2 *testing.T) {
+		for _, input := range validInputs {
+			result := KeepByteChars(input.buf, input.toKeep)
+
+			if !bytes.Equal(result, input.expected) {
+				t2.Errorf("Input '%s' toKeep: '%s', expected: '%s', result: '%s'",
+					input.buf, input.toKeep, input.expected, result,
+				)
+			}
+		}
+	})
+
+	t.Run("invalid inputs", func(t2 *testing.T) {
+		for _, input := range invalidInputs {
+			result := KeepByteChars(input.buf, input.toKeep)
+
+			if bytes.Equal(result, input.expected) {
+				t2.Errorf("Input '%s' toKeep: '%s', expected: '%s', result: '%s'",
+					input.buf, input.toKeep, input.expected, result,
+				)
+			}
+		}
+
+	})
 }
