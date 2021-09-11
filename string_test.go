@@ -264,6 +264,21 @@ func TestKeepByteChars(t *testing.T) {
 			toKeep:   []byte("אבגדהוזחטיךכלםמןנסעףפץצקרשת"),
 			expected: []byte("שלוםעולם"),
 		},
+		{
+			buf:      nil,
+			toKeep:   []byte("a"),
+			expected: nil,
+		},
+		{
+			buf:      []byte{'a', 'b'},
+			toKeep:   nil,
+			expected: []byte{},
+		},
+		{
+			buf:      []byte{'a', 'b'},
+			toKeep:   []byte{},
+			expected: []byte{},
+		},
 	}
 
 	invalidInputs := []bytesToTest{
