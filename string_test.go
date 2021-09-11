@@ -216,6 +216,12 @@ func TestCopyRange(t *testing.T) {
 			to:       0,
 			expected: "עברית",
 		},
+		{
+			input:    "",
+			from:     0,
+			to:       10,
+			expected: "",
+		},
 	}
 
 	for idx, test := range tests {
