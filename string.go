@@ -1,6 +1,7 @@
 package gostrutils
 
 import (
+	"bytes"
 	"errors"
 	"strings"
 	"unicode/utf8"
@@ -83,4 +84,35 @@ func CopyRange(src string, from, to int) (string, error) {
 	}
 
 	return string(tmp[from:to]), nil
+}
+
+// KeepByteChars removes all chars that are not part of toKeep
+// and return a new slice of bytes
+func KeepByteChars(buf []byte, toKeep []byte) []byte {
+	var runes []rune
+
+	r := bytes.Runes(buf)
+
+	for _, ch := range r {
+		if IsRuneInByteSlice(toKeep, ch) {
+			runes = append(runes, ch)
+		}
+	}
+
+	return []byte(string(runes))
+}
+
+// ClearByteChars removes chars from buffer
+func ClearByteChars(buf []byte, chars []byte) []byte {
+	var runes []rune
+
+	r := bytes.Runes(buf)
+
+	for _, ch := range r {
+		if !IsRuneInByteSlice(chars, ch) {
+			runes = append(runes, ch)
+		}
+	}
+
+	return []byte(string(runes))
 }

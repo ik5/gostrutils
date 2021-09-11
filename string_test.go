@@ -1,6 +1,9 @@
 package gostrutils
 
-import "testing"
+import (
+	"bytes"
+	"testing"
+)
 
 func TestIsEmptyFuncs(t *testing.T) {
 	type toCheck struct {
@@ -213,6 +216,12 @@ func TestCopyRange(t *testing.T) {
 			to:       0,
 			expected: "עברית",
 		},
+		{
+			input:    "",
+			from:     0,
+			to:       10,
+			expected: "",
+		},
 	}
 
 	for idx, test := range tests {
@@ -235,4 +244,131 @@ func TestCopyRange(t *testing.T) {
 		}
 	}
 
+}
+
+func TestKeepByteChars(t *testing.T) {
+	type bytesToTest struct {
+		buf      []byte
+		toKeep   []byte
+		expected []byte
+	}
+
+	validInputs := []bytesToTest{
+		{
+			buf:      []byte("42\n"),
+			toKeep:   []byte("1234567890"),
+			expected: []byte("42"),
+		},
+		{
+			buf:      []byte("שלום עולם | Hello World"),
+			toKeep:   []byte("אבגדהוזחטיךכלםמןנסעףפץצקרשת"),
+			expected: []byte("שלוםעולם"),
+		},
+		{
+			buf:      nil,
+			toKeep:   []byte("a"),
+			expected: nil,
+		},
+		{
+			buf:      []byte{'a', 'b'},
+			toKeep:   nil,
+			expected: []byte{},
+		},
+		{
+			buf:      []byte{'a', 'b'},
+			toKeep:   []byte{},
+			expected: []byte{},
+		},
+	}
+
+	invalidInputs := []bytesToTest{
+		{
+			buf:      []byte("42\n"),
+			toKeep:   []byte("\r\n"),
+			expected: []byte("42"),
+		},
+		{
+			buf:      []byte("שלום עולם | Hello World"),
+			toKeep:   []byte("אבגדהוזחטיךכלםמןנסעףפץצקרשת"),
+			expected: []byte("שלום עולם"),
+		},
+	}
+
+	t.Run("valid inputs", func(t2 *testing.T) {
+		for _, input := range validInputs {
+			result := KeepByteChars(input.buf, input.toKeep)
+
+			if !bytes.Equal(result, input.expected) {
+				t2.Errorf("Input '%s' toKeep: '%s', expected: '%s', result: '%s'",
+					input.buf, input.toKeep, input.expected, result,
+				)
+			}
+		}
+	})
+
+	t.Run("invalid inputs", func(t2 *testing.T) {
+		for _, input := range invalidInputs {
+			result := KeepByteChars(input.buf, input.toKeep)
+
+			if bytes.Equal(result, input.expected) {
+				t2.Errorf("Input '%s' toKeep: '%s', expected: '%s', result: '%s'",
+					input.buf, input.toKeep, input.expected, result,
+				)
+			}
+		}
+
+	})
+}
+
+func TestClearByteChars(t *testing.T) {
+	type bytesToTest struct {
+		buf      []byte
+		chars    []byte
+		expected []byte
+	}
+
+	validInputs := []bytesToTest{
+		{
+			buf:      []byte("42\n"),
+			chars:    []byte{'\n'},
+			expected: []byte{'4', '2'},
+		},
+		{
+			buf:      []byte("שלום עולם"),
+			chars:    []byte{32}, // space
+			expected: []byte("שלוםעולם"),
+		},
+		{
+			buf:      []byte("שלום עולם"),
+			chars:    []byte{},
+			expected: []byte("שלום עולם"),
+		},
+		{
+			buf:      []byte("שלום עולם"),
+			chars:    nil,
+			expected: []byte("שלום עולם"),
+		},
+		{
+			buf:      nil,
+			chars:    []byte{'a'},
+			expected: nil,
+		},
+		{
+			buf:      []byte{},
+			chars:    []byte{'a'},
+			expected: []byte{},
+		},
+	}
+
+	t.Run("valid test", func(t2 *testing.T) {
+		for _, input := range validInputs {
+			result := ClearByteChars(input.buf, input.chars)
+
+			if !bytes.Equal(result, input.expected) {
+				t2.Errorf("Input '%s' chars: '%s', expected: '%s', result: '%s'",
+					input.buf, input.chars, input.expected, result,
+				)
+			}
+		}
+	})
 }
