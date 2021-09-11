@@ -101,3 +101,18 @@ func KeepByteChars(buf []byte, toKeep []byte) []byte {
 
 	return []byte(string(runes))
 }
+
+// ClearByteChars removes chars from buffer
+func ClearByteChars(buf []byte, chars []byte) []byte {
+	var runes []rune
+
+	r := bytes.Runes(buf)
+
+	for _, ch := range r {
+		if !IsRuneInByteSlice(chars, ch) {
+			runes = append(runes, ch)
+		}
+	}
+
+	return []byte(string(runes))
+}

@@ -319,3 +319,56 @@ func TestKeepByteChars(t *testing.T) {
 
 	})
 }
+
+func TestClearByteChars(t *testing.T) {
+	type bytesToTest struct {
+		buf      []byte
+		chars    []byte
+		expected []byte
+	}
+
+	validInputs := []bytesToTest{
+		{
+			buf:      []byte("42\n"),
+			chars:    []byte{'\n'},
+			expected: []byte{'4', '2'},
+		},
+		{
+			buf:      []byte("שלום עולם"),
+			chars:    []byte{32}, // space
+			expected: []byte("שלוםעולם"),
+		},
+		{
+			buf:      []byte("שלום עולם"),
+			chars:    []byte{},
+			expected: []byte("שלום עולם"),
+		},
+		{
+			buf:      []byte("שלום עולם"),
+			chars:    nil,
+			expected: []byte("שלום עולם"),
+		},
+		{
+			buf:      nil,
+			chars:    []byte{'a'},
+			expected: nil,
+		},
+		{
+			buf:      []byte{},
+			chars:    []byte{'a'},
+			expected: []byte{},
+		},
+	}
+
+	t.Run("valid test", func(t2 *testing.T) {
+		for _, input := range validInputs {
+			result := ClearByteChars(input.buf, input.chars)
+
+			if !bytes.Equal(result, input.expected) {
+				t2.Errorf("Input '%s' chars: '%s', expected: '%s', result: '%s'",
+					input.buf, input.chars, input.expected, result,
+				)
+			}
+		}
+	})
+}
